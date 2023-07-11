@@ -27,10 +27,22 @@ public class Wave {
     }
 
     public void draw(Graphics2D g2){
+
+        int col = -1;
         int row = 0;
-        for (int i = 0; i < enemies.size(); i++) {
-            g2.drawImage(enemies.get(i).img, 20 + i * 100, 300 + 100 * row, enemies.get(i).img.getWidth(), enemies.get(i).img.getHeight(), null);
+        for(int i = 0; i < enemies.size(); i++){
+            if(!enemies.get(i).isAlive){
+                continue;
+            }
+            if(i % 2 == 0) {
+                row = 0;
+                col++;
+            }
+            if(i % 2 == 1) row = 1;
+
+            g2.drawImage(enemies.get(i).img, 100 + 250 * col, 100 + 150 * row, enemies.get(i).img.getWidth(), enemies.get(i).img.getHeight(), null);
         }
+
     }
 
 }

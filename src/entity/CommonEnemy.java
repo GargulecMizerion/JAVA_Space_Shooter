@@ -11,7 +11,7 @@ public class CommonEnemy extends Entity{
 
     public CommonEnemy(int difficult) {
         this.difficult = difficult;
-
+        this.isAlive = true;
         loadBitmap(difficult);
     }
 
