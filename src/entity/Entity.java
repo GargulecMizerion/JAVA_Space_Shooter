@@ -3,9 +3,9 @@ package entity;
 import java.awt.image.BufferedImage;
 
 public class Entity {
-    int entityX, entityY, speed;
+    public int entityX, entityY, speed, hp;
 
-    BufferedImage img;
+    public BufferedImage img;
 
 
 }

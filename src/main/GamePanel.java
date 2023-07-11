@@ -1,5 +1,6 @@
 package main;
 
+import bullet.DefaultPlayerBullet;
 import entity.Player;
 
 import javax.imageio.ImageIO;
@@ -23,6 +24,8 @@ public class GamePanel extends JPanel implements Runnable{
     KeyHandler keyH = new KeyHandler();
 
     Player player = new Player(this, keyH);
+
+    DefaultPlayerBullet bullet = new DefaultPlayerBullet(this, keyH, player);
     Thread gameThread;
 
     public void startGameThread(){
@@ -72,6 +75,8 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void update(){
         player.update();
+        bullet.update();
+
     }
 
     public void paintComponent(Graphics g){
@@ -80,7 +85,9 @@ public class GamePanel extends JPanel implements Runnable{
         Graphics2D g2 = (Graphics2D) g;
 
         g2.drawImage(background, 0, 0, screenWidth, screenHeight, null);
+        bullet.draw(g2);
         player.draw(g2);
+
     }
 
 }
