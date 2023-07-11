@@ -7,5 +7,6 @@ public class Entity {
 
     public BufferedImage img;
 
+    boolean isAlive;
 
 }

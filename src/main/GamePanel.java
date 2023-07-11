@@ -2,6 +2,7 @@ package main;
 
 import bullet.DefaultPlayerBullet;
 import entity.Player;
+import wave.Wave;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -26,6 +27,8 @@ public class GamePanel extends JPanel implements Runnable{
     Player player = new Player(this, keyH);
 
     DefaultPlayerBullet bullet = new DefaultPlayerBullet(this, keyH, player);
+
+    Wave wave_0 = new Wave();
     Thread gameThread;
 
     public void startGameThread(){
@@ -87,6 +90,7 @@ public class GamePanel extends JPanel implements Runnable{
         g2.drawImage(background, 0, 0, screenWidth, screenHeight, null);
         bullet.draw(g2);
         player.draw(g2);
+        wave_0.draw(g2);
 
     }
 
