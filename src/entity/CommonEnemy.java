@@ -8,6 +8,8 @@ public class CommonEnemy extends Entity{
 
 
     int difficult;
+    int maxMove = 40; // Maksymalny ruch podany w pixelach
+    int move = 0; // Wykonany juz ruch podany w pixelach
 
     public CommonEnemy(int difficult) {
         this.difficult = difficult;
@@ -32,6 +34,15 @@ public class CommonEnemy extends Entity{
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void move(){
+        if(move < 0 || move > maxMove){
+            speed = speed * -1;
+            move = 0;
+        }
+        entityX += speed;
+        move++;
     }
 
 

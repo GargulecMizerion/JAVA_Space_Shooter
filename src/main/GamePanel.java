@@ -29,6 +29,8 @@ public class GamePanel extends JPanel implements Runnable{
     DefaultPlayerBullet bullet = new DefaultPlayerBullet(this, keyH, player);
 
     Wave wave_0 = new Wave();
+
+    ColissionChecker colissionChecker = new ColissionChecker(wave_0, bullet);
     Thread gameThread;
 
     public void startGameThread(){
@@ -79,6 +81,9 @@ public class GamePanel extends JPanel implements Runnable{
     public void update(){
         player.update();
         bullet.update();
+        wave_0.update();
+
+        if(bullet.isActive) colissionChecker.destroyEnemy();
 
     }
 
@@ -91,6 +96,7 @@ public class GamePanel extends JPanel implements Runnable{
         bullet.draw(g2);
         player.draw(g2);
         wave_0.draw(g2);
+
 
     }
 

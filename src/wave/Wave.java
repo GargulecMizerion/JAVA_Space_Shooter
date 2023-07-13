@@ -6,14 +6,16 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Wave {
-    ArrayList<CommonEnemy> enemies;
+    public ArrayList<CommonEnemy> enemies;
+
 
     public Wave() {
         enemies = new ArrayList<>();
         loadEnemies();
+        setValues();
     }
 
-    public void loadEnemies(){
+    public void loadEnemies() {
         enemies.add(new CommonEnemy(1));
         enemies.add(new CommonEnemy(1));
         enemies.add(new CommonEnemy(1));
@@ -26,23 +28,35 @@ public class Wave {
         enemies.add(new CommonEnemy(1));
     }
 
-    public void draw(Graphics2D g2){
-
+    public void setValues() {
         int col = -1;
         int row = 0;
-        for(int i = 0; i < enemies.size(); i++){
-            if(!enemies.get(i).isAlive){
-                continue;
-            }
-            if(i % 2 == 0) {
+        for (int i = 0; i < enemies.size(); i++) {
+
+            if (i % 2 == 0) {
                 row = 0;
                 col++;
             }
-            if(i % 2 == 1) row = 1;
+            if (i % 2 == 1) row = 1;
+            enemies.get(i).entityX = 100 + 250 * col;
+            enemies.get(i).entityY = 100 + 150 * row;
+            enemies.get(i).speed = 1;
+        }
+    }
 
-            g2.drawImage(enemies.get(i).img, 100 + 250 * col, 100 + 150 * row, enemies.get(i).img.getWidth(), enemies.get(i).img.getHeight(), null);
+    public void update(){
+        for(CommonEnemy enemy : enemies){
+            enemy.move();
+        }
+    }
+
+    public void draw(Graphics2D g2) {
+
+        for (CommonEnemy enemy : enemies) {
+            if (enemy.isAlive) {
+                g2.drawImage(enemy.img, enemy.entityX, enemy.entityY, enemy.img.getWidth(), enemy.img.getHeight(), null);
+            }
         }
 
     }
-
 }
