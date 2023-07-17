@@ -59,4 +59,15 @@ public class Wave {
         }
 
     }
+
+    public boolean isEmpty(){
+        for (CommonEnemy enemy:enemies) {
+            if(enemy.isAlive){
+                return false;
+            }
+        }
+
+        return true;
+    }
+
 }
